@@ -1,4 +1,4 @@
-export default function StatsPanel({ stats, connected }) {
+export default function StatsPanel({ stats, connected, symbols = ['BTCUSDT', 'ETHUSDT', 'XRPUSDT'] }) {
     const buyPct = stats.total > 0
         ? Math.round(stats.buyCount / stats.total * 100)
         : 50;
@@ -15,18 +15,23 @@ export default function StatsPanel({ stats, connected }) {
                 <div className="stat-label">매수 비율</div>
                 <div className="stat-value buy">{buyPct}%</div>
             </div>
-            <div className="stat-item">
-                <div className="stat-label">BTC 고가</div>
-                <div className="stat-value">
-                    ${stats.high['BTCUSDT']?.toLocaleString() ?? '-'}
-                </div>
-            </div>
-            <div className="stat-item">
-                <div className="stat-label">BTC 저가</div>
-                <div className="stat-value">
-                    ${stats.low['BTCUSDT']?.toLocaleString() ?? '-'}
-                </div>
-            </div>
+            {/* ✅ 종목별 고가/저가 */}
+                  {symbols.map(symbol => (
+                    <div key={symbol} className="stat-item">
+                      <div className="stat-label">{symbol} 고가</div>
+                      <div className="stat-value">
+                        ${stats.high[symbol]?.toLocaleString() ?? '-'}
+                      </div>
+                    </div>
+                  ))}
+                  {symbols.map(symbol => (
+                    <div key={symbol} className="stat-item">
+                      <div className="stat-label">{symbol} 저가</div>
+                      <div className="stat-value">
+                        ${stats.low[symbol]?.toLocaleString() ?? '-'}
+                      </div>
+                    </div>
+                  ))}
             <div className="stat-item">
                 <div className="stat-label">연결 상태</div>
                 <div className={`stat-value ${connected ? 'connected' : 'disconnected'}`}>

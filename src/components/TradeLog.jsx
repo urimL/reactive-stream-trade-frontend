@@ -1,15 +1,4 @@
-import { useEffect, useRef } from 'react';
-
 export default function TradeLog({ trades }) {
-    const topRef = useRef(null);
-
-    // :white_check_mark: 새 데이터 올 때마다 맨 위로 스크롤
-    useEffect(() => {
-        if (topRef.current) {
-            topRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-    }, [trades]);
-
     return (
         <div className="trade-log">
             <div className="log-header">
@@ -19,8 +8,6 @@ export default function TradeLog({ trades }) {
                 <span>수량</span>
                 <span>구분</span>
             </div>
-            {/* :white_check_mark: 맨 위 기준점 */}
-            <div ref={topRef} />
             {trades.map((trade, i) => (
                 <div key={i} className={`log-row ${trade.buy ? 'buy' : 'sell'}`}>
                     <span>{new Date(trade.tradeTime).toLocaleTimeString()}</span>

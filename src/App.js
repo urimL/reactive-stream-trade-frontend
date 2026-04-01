@@ -7,6 +7,8 @@ import BackpressurePanel from './components/BackpressurePanel';
 import StatsPanel        from './components/StatsPanel';
 import './App.css';
 
+const SYMBOLS = ['BTCUSDT', 'ETHUSDT', 'XRPUSDT'];
+
 export default function App() {
   const [strategy, setStrategy]     = useState('buffer');
   const [dropCounts, setDropCounts] = useState({});
@@ -34,7 +36,13 @@ export default function App() {
         </header>
 
         <div className="coin-grid">
-          <CoinCard symbol="BTCUSDT" data={prices['BTCUSDT']} />
+                {SYMBOLS.map(symbol => (
+                  <CoinCard
+                    key={symbol}
+                    symbol={symbol}
+                    data={prices[symbol]}
+                  />
+                ))}
         </div>
 
         <div className="mid-row">
@@ -44,8 +52,9 @@ export default function App() {
               dropCounts={dropCounts}
           />
           <StatsPanel
-              stats={stats}
-              connected={connected}
+                    stats={stats}
+                    connected={connected}
+                    symbols={SYMBOLS} // ✅ 심볼 목록 전달
           />
         </div>
 
