@@ -37,7 +37,10 @@ export const useTrades = (strategy = 'buffer') => {
             es.close();
         };
 
-        return () => es.close();
+        return () => {
+            es.onerror = null;
+            es.close();
+        };
     }, [strategy]);
 
     return { trades, prices, connected };
