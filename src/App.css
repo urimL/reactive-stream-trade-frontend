@@ -1,38 +1,91 @@
-.App {
-  text-align: center;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: sans-serif; background: #0f0f0f; color: #e0e0e0; }
+
+.app { max-width: 960px; margin: 0 auto; padding: 1.5rem 1rem; }
+
+.app-header {
+  display: flex; align-items: center;
+  justify-content: space-between; margin-bottom: 1.5rem;
+}
+.brand { font-size: 20px; font-weight: 600; color: #fff; }
+.status.on  { color: #1D9E75; font-size: 13px; }
+.status.off { color: #888;    font-size: 13px; }
+
+.coin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px; margin-bottom: 1rem;
+}
+.coin-card {
+  background: #1a1a1a; border: 1px solid #2a2a2a;
+  border-radius: 12px; padding: 1rem;
+}
+.coin-card.loading { opacity: 0.5; }
+.coin-symbol { font-size: 13px; color: #888; margin-bottom: 4px; }
+.coin-price  { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+.coin-side.buy  { color: #1D9E75; font-size: 13px; }
+.coin-side.sell { color: #E24B4A; font-size: 13px; }
+.coin-qty { font-size: 12px; color: #666; margin-top: 4px; }
+
+.mid-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 1rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.bp-panel {
+  background: #1a1a1a; border: 1px solid #2a2a2a;
+  border-radius: 12px; padding: 1rem;
 }
+.bp-title { font-size: 13px; color: #888; margin-bottom: 8px; }
+.bp-btns  { display: flex; gap: 6px; margin-bottom: 8px; }
+.bp-btn {
+  font-size: 12px; padding: 5px 14px; border-radius: 20px;
+  border: 1px solid #333; color: #888;
+  background: transparent; cursor: pointer;
+}
+.bp-btn.active {
+  background: #2a2060; color: #a99ff5; border-color: #534AB7;
+}
+.bp-desc  { font-size: 12px; color: #666; margin-bottom: 10px; }
+.drop-counts { display: flex; flex-direction: column; gap: 4px; }
+.drop-item {
+  display: flex; justify-content: space-between; font-size: 12px;
+}
+.drop-label { color: #666; }
+.drop-value { color: #E24B4A; font-weight: 600; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.stats-panel {
+  background: #1a1a1a; border: 1px solid #2a2a2a;
+  border-radius: 12px; padding: 1rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
 }
+.stat-item {
+  background: #222; border-radius: 8px; padding: 8px 10px;
+}
+.stat-label { font-size: 11px; color: #666; margin-bottom: 4px; }
+.stat-value { font-size: 16px; font-weight: 600; }
+.stat-value.buy          { color: #1D9E75; }
+.stat-value.connected    { color: #1D9E75; font-size: 13px; }
+.stat-value.disconnected { color: #888;    font-size: 13px; }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.trade-log {
+  background: #1a1a1a; border: 1px solid #2a2a2a;
+  border-radius: 12px; overflow: hidden;
 }
-
-.App-link {
-  color: #61dafb;
+.log-header {
+  display: grid;
+  grid-template-columns: 90px 100px 1fr 120px 60px;
+  gap: 8px; padding: 8px 12px;
+  font-size: 11px; color: #555;
+  border-bottom: 1px solid #2a2a2a;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.log-row {
+  display: grid;
+  grid-template-columns: 90px 100px 1fr 120px 60px;
+  gap: 8px; padding: 6px 12px; font-size: 12px;
+  border-bottom: 1px solid #1f1f1f;
+  animation: fadeIn 0.2s ease;
 }
+.log-row.buy  { border-left: 2px solid #1D9E75; }
+.log-row.sell { border-left: 2px solid #E24B4A; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
