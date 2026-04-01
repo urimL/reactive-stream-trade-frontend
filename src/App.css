@@ -36,6 +36,14 @@ body {
   padding: 2rem 1rem 2.5rem;
 }
 
+.trade-log {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  overflow-y: auto;/* :white_check_mark: 스크롤 가능 */
+  max-height: 400px; /* :white_check_mark: 높이 제한 */
+}
+
 .app-header {
   display: flex;
   align-items: center;
@@ -264,6 +272,14 @@ body {
 .trade-log {
   overflow: hidden;
   border-radius: 26px;
+  max-height: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+.trade-log-body {
+  overflow-y: auto;
+  flex: 1;
 }
 
 .log-header,

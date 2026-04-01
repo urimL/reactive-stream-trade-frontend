@@ -33,8 +33,9 @@ export const useTrades = (strategy = 'buffer') => {
         });
 
         es.onerror = () => {
-            setConnected(false);
-            es.close();
+            if (esRef.current === es) {
+                setConnected(false);
+            }
         };
 
         return () => {
