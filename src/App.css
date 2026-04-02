@@ -23,9 +23,9 @@
 body {
   font-family: "Segoe UI", "Apple SD Gothic Neo", sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(255, 230, 166, 0.75), transparent 28%),
-    radial-gradient(circle at top right, rgba(157, 212, 255, 0.6), transparent 30%),
-    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+          radial-gradient(circle at top left, rgba(255, 230, 166, 0.75), transparent 28%),
+          radial-gradient(circle at top right, rgba(157, 212, 255, 0.6), transparent 30%),
+          linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
   color: var(--text-main);
   min-height: 100vh;
 }
@@ -67,15 +67,8 @@ body {
   font-weight: 700;
 }
 
-.status.on {
-  color: var(--buy);
-  background: var(--buy-soft);
-}
-
-.status.off {
-  color: var(--text-sub);
-  background: rgba(136, 160, 184, 0.14);
-}
+.status.on  { color: var(--buy);      background: var(--buy-soft); }
+.status.off { color: var(--text-sub); background: rgba(136, 160, 184, 0.14); }
 
 .coin-grid {
   display: grid;
@@ -137,15 +130,8 @@ body {
   font-weight: 700;
 }
 
-.coin-side.buy {
-  color: var(--buy);
-  background: var(--buy-soft);
-}
-
-.coin-side.sell {
-  color: var(--sell);
-  background: var(--sell-soft);
-}
+.coin-side.buy  { color: var(--buy);  background: var(--buy-soft); }
+.coin-side.sell { color: var(--sell); background: var(--sell-soft); }
 
 .coin-qty {
   font-size: 0.78rem;
@@ -208,28 +194,92 @@ body {
   margin-bottom: 1rem;
 }
 
-.drop-counts {
-  display: flex;
-  flex-direction: column;
+.bp-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.bp-metric {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 0.75rem 0.85rem;
+}
+
+.bp-metric-l {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-soft);
+  margin-bottom: 0.3rem;
+}
+
+.bp-metric-v {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.03em;
+}
+
+.bp-metric-v.red { color: var(--sell); }
+
+.bp-compare-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-soft);
+  margin-bottom: 0.5rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--line);
+}
+
+.bp-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 0.5rem;
 }
 
-.drop-item {
+.bp-compare-item {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 0.75rem 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bp-compare-item:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-1px);
+}
+
+.bp-compare-item.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.bp-compare-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.bp-compare-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0.7rem 0.85rem;
-  font-size: 0.82rem;
-  border-radius: 16px;
-  background: var(--surface-soft);
+  font-size: 0.75rem;
+  margin-bottom: 0.2rem;
 }
 
-.drop-label { color: var(--text-sub); }
+.bp-compare-label { color: var(--text-soft); }
 
-.drop-value {
-  color: var(--sell);
-  font-weight: 800;
+.bp-compare-val {
+  color: var(--text-main);
+  font-weight: 700;
 }
+
+.bp-compare-val.red { color: var(--sell); }
 
 .stats-panel {
   display: grid;
@@ -257,8 +307,8 @@ body {
   letter-spacing: -0.03em;
 }
 
-.stat-value.buy { color: var(--buy); }
-.stat-value.connected { color: var(--buy); font-size: 0.88rem; }
+.stat-value.buy          { color: var(--buy); }
+.stat-value.connected    { color: var(--buy);  font-size: 0.88rem; }
 .stat-value.disconnected { color: var(--sell); font-size: 0.88rem; }
 
 .trade-log {
@@ -299,14 +349,12 @@ body {
   transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.log-row:last-child {
-  border-bottom: none;
-}
+.log-row:last-child { border-bottom: none; }
 
-.log-row.buy { border-left: 4px solid var(--buy); }
+.log-row.buy  { border-left: 4px solid var(--buy); }
 .log-row.sell { border-left: 4px solid var(--sell); }
 
-.log-row.buy .log-side { color: var(--buy); font-weight: 700; }
+.log-row.buy  .log-side { color: var(--buy);  font-weight: 700; }
 .log-row.sell .log-side { color: var(--sell); font-weight: 700; }
 
 .log-row.fresh.buy {
@@ -322,53 +370,24 @@ body {
 }
 
 @keyframes logEnter {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes latestTradeBuy {
-  0% {
-    background: rgba(19, 138, 99, 0.3);
-    transform: translateY(-8px);
-  }
-  45% {
-    background: rgba(19, 138, 99, 0.2);
-  }
-  100% {
-    background: linear-gradient(90deg, rgba(19, 138, 99, 0.18), rgba(228, 247, 239, 0.72));
-    transform: translateY(0);
-  }
+  0%   { background: rgba(19, 138, 99, 0.3);  transform: translateY(-8px); }
+  45%  { background: rgba(19, 138, 99, 0.2); }
+  100% { background: linear-gradient(90deg, rgba(19, 138, 99, 0.18), rgba(228, 247, 239, 0.72)); transform: translateY(0); }
 }
 
 @keyframes latestTradeSell {
-  0% {
-    background: rgba(221, 90, 82, 0.28);
-    transform: translateY(-8px);
-  }
-  45% {
-    background: rgba(221, 90, 82, 0.2);
-  }
-  100% {
-    background: linear-gradient(90deg, rgba(221, 90, 82, 0.16), rgba(255, 240, 238, 0.78));
-    transform: translateY(0);
-  }
+  0%   { background: rgba(221, 90, 82, 0.28); transform: translateY(-8px); }
+  45%  { background: rgba(221, 90, 82, 0.2); }
+  100% { background: linear-gradient(90deg, rgba(221, 90, 82, 0.16), rgba(255, 240, 238, 0.78)); transform: translateY(0); }
 }
 
 @media (max-width: 768px) {
-  .app {
-    padding: 1.2rem 0.85rem 2rem;
-  }
-
-  .app-header,
-  .mid-row {
-    grid-template-columns: 1fr;
-  }
+  .app { padding: 1.2rem 0.85rem 2rem; }
 
   .app-header {
     flex-direction: column;
